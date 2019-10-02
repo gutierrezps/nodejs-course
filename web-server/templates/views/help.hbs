@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body style="text-align: center">
-    <h1>{{title}}</h1>
-    <h2>About</h2>
-    <p>Weather forecast app by {{author}}</p>
+    {{>header}}
+    {{#each faqs}}
+        <p><b>{{question}}</b> {{answer}}</p>
+    {{/each}}
+    {{>footer}}
 </body>
 </html>
