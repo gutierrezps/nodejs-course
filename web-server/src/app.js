@@ -1,20 +1,12 @@
+const path = require('path')
 const express = require('express')
 
 // Create an Express application
 const app = express()
 
-// root route
-app.get('', (req, res) => {
-    res.send('<h1>Hello Express!</h1>')
-})
-
-app.get('/help', (req, res) => {
-    res.send('<h1>Help</h1><p>Weather forecast API</p>')
-})
-
-app.get('/about', (req, res) => {
-    res.send('<h1>About</h1><p>Made with NodeJs and Express. By Gutierrez PS</p>')
-})
+// Add public path folder to be served by Express
+const publicDirPath = path.join(__dirname, '..', 'public')
+app.use(express.static(publicDirPath))
 
 app.get('/weather', (req, res) => {
     res.send({
