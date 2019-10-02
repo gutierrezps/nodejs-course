@@ -19,24 +19,21 @@ app.set('view engine', 'hbs')
 
 app.get('', (req, res) => {
     res.render('index', {
-        appTitle: 'Weather App',
-        pageTitle: 'Homepage',
+        title: 'Weather App',
         author: 'Gutierrez PS'
     })
 })
 
 app.get('/about', (req, res) => {
     res.render('about', {
-        appTitle: 'Weather App',
-        pageTitle: 'About',
+        title: 'About',
         author: 'Gutierrez PS'
     })
 })
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        appTitle: 'Weather App',
-        pageTitle: 'Help',
+        title: 'Help',
         author: 'Gutierrez PS',
         faqs: [
             {question: 'How to do this?', answer: 'By doing that'},
@@ -57,8 +54,7 @@ app.get('/weather', (req, res) => {
 
 app.get('/help/*', (req, res) => {
     res.render('404', {
-        appTitle: 'Weather App',
-        pageTitle: 'Not found',
+        title: 'Not found',
         author: 'Gutierrez PS',
         missing: 'Help article'
     })
@@ -66,8 +62,7 @@ app.get('/help/*', (req, res) => {
 
 app.get('*', (req, res) => {
     res.render('404', {
-        appTitle: 'Weather App',
-        pageTitle: 'Not found',
+        title: 'Not found',
         author: 'Gutierrez PS',
         missing: 'Page'
     })

@@ -6,12 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/favicon.png">
 </head>
-<body style="text-align: center">
-    {{>header}}
-    {{#each faqs}}
-        <p><b>{{question}}</b> {{answer}}</p>
-    {{/each}}
+<body>
+    <div class="main-content">
+        {{>header}}
+        {{#each faqs}}
+            <p><b>{{question}}</b> {{answer}}</p>
+        {{/each}}
+    </div>
+    
     {{>footer}}
 </body>
 </html>
