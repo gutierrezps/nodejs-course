@@ -2,9 +2,15 @@ const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
 
+require('dotenv').config()      // load .env configurations
+
+const forecast = require('./utils/forecast.js')
+const geocode = require('./utils/geocode.js')
+
 // Create an Express application
 const app = express()
 
+// configure Express paths
 const publicDirPath = path.join(__dirname, '..', 'public')
 const viewsPath = path.join(__dirname, '..', 'templates', 'views')
 const partialsPath = path.join(__dirname, '..', 'templates', 'partials')
@@ -49,13 +55,24 @@ app.get('/weather', (req, res) => {
         })
     }
 
-    res.send({
-        address: req.query.address,
-        forecast: {
-            temperature: 30,
-            precipitation: 0.2
-        },
-        location: 'João Pessoa, Paraíba'
+    const address = req.query.address
+
+    geocode(address, (error, {latitude, longitude, location} = {}) => {
+        if (error) {
+            return res.send({error})
+        }
+
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) {
+                return res.send({error})
+            }
+            
+            res.send({
+                address,
+                forecast: forecastData,
+                location
+            })
+        })
     })
 })
 
