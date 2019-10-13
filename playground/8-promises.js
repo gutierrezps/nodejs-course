@@ -39,3 +39,17 @@ runLaterPromise.then((result) => {
 })
 
 
+// Promise chaining
+
+const add = (a, b) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(a + b), 2000)
+    })
+}
+
+add(1, 2).then((sum) => {
+    console.log(sum)
+    return add(sum, 5)      // return a promise to the next then() call
+}).then((sum2) => {
+    console.log(sum2)
+}).catch((reason) => console.log(reason))       // catches errors from both promises
